@@ -2,17 +2,19 @@ package edu.utd;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class CoverageCollection {
-    public static HashMap<String, HashMap<String, Set>> testCases;
-    public static HashMap<String, Set> testCase;
+    public static HashMap<String, HashMap<String, LinkedHashSet<Integer>>> testSuite;
+    public static HashMap<String, LinkedHashSet<Integer>> testCase;
+    public static String testName;
 
-    public void visitLine(String className, int line){
+    public static void visitLine(String className, int line){
         if(testCase == null || className == null) return;
-        Set<Integer> set = testCase.get(className);
+        LinkedHashSet<Integer> set = testCase.get(className);
         if(set == null) {
-            set = new HashSet<Integer>();
+            set = new LinkedHashSet<Integer>();
         }
         set.add(line);
         testCase.put(className, set);
