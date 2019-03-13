@@ -10,7 +10,7 @@ public class CoverageCollection {
     public static HashMap<String, LinkedHashSet<Integer>> testCase;
     public static String testName;
 
-    public static void visitLine(String className, int line){
+    public static void visitLine(String className, Integer line){
         if(testCase == null || className == null) return;
         LinkedHashSet<Integer> set = testCase.get(className);
         if(set == null) {
