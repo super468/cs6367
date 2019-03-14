@@ -14,7 +14,17 @@ public class Agent {
         inst.addTransformer(new ClassFileTransformer() {
             public byte[] transform(ClassLoader classLoader, String className, Class<?> aClass, ProtectionDomain protectionDomain, byte[] bytes) throws IllegalClassFormatException {
                 // ASM Code
-                if (className.startsWith("org/apache/commons/dbutils") || className.startsWith("org/joda/time")){
+                if (className.startsWith("org/apache/commons/dbutils") ||
+                        className.startsWith("org/joda/time") ||
+                        className.startsWith("com/fasterxml/aalto") ||
+                        className.startsWith("org/neo4j/batchimport") ||
+                        className.startsWith("com/github/vbauer/caesar") ||
+                        className.startsWith("com/vaadin/demo/dashboard") ||
+                        className.startsWith("au/com/ds/ef") ||
+                        className.startsWith("de/apaxo/bedcon") ||
+                        className.startsWith("com/tagtraum/perf/gcviewer") ||
+                        className.startsWith("org/hashids")
+                ){
                     System.out.println(className);
                     ClassReader cr = new ClassReader(bytes);
                     ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
