@@ -37,15 +37,15 @@ class MethodTransformVisitor extends MethodVisitor implements Opcodes {
             super.visitLineNumber(line, start);
         }
     }
-//
-//    @Override
-//    public void visitLabel(Label arg0) {
-//        mv.visitLdcInsn(className);
-//        mv.visitInsn(this.line);
-//        mv.visitMethodInsn(INVOKESTATIC, "java/lang/Integer", "valueOf", "(I)Ljava/lang/Integer;", false);
-//        mv.visitMethodInsn(INVOKESTATIC, "edu/utd/CoverageCollection", "visitLine", "(Ljava/lang/String;Ljava/lang/Integer;)V", false);
-//        super.visitLabel(arg0);
-//    }
+
+    @Override
+    public void visitLabel(Label arg0) {
+        mv.visitLdcInsn(className);
+        mv.visitLdcInsn(new Integer(this.line));
+        mv.visitMethodInsn(INVOKESTATIC, "java/lang/Integer", "valueOf", "(I)Ljava/lang/Integer;", false);
+        mv.visitMethodInsn(INVOKESTATIC, "edu/utd/CoverageCollection", "visitLine", "(Ljava/lang/String;Ljava/lang/Integer;)V", false);
+        super.visitLabel(arg0);
+    }
 
     @Override
     public void visitEnd() {
